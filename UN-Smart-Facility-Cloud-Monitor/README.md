@@ -79,7 +79,7 @@ terraform {
 
 ## Conclusion
 Beyond "The System is Down"
-This project is more than a technical exercise it is a blueprint for Operational Resilience in public service delivery. By analyzing the systemic failures of high-volume platforms like NaTIS, I have demonstrated that many service outages are not inevitable they are engineering challenges that can be solved through Automation and Governance.
+This project is more than a technical exercise it is a blueprint for Operational Resilience in public service delivery. By analyzing the systemic failures of high volume platforms like NaTIS, I have demonstrated that many service outages are not inevitable they are engineering challenges that can be solved through Automation and Governance.
 
 Through this 7-day evolution, I have implemented a system that:
 A system that SELF HEALS using native AWS actions to clear defunct or stale processes and restore service in minutes, not hours. At a cost effective mannerby utilizing AWS Budgets to ensure that high tech resilience does not come at an unsustainable cost to donor-funded projects.It also implements a secure S3/DynamoDB backend that allows international teams to collaborate without the risk of infrastructure conflict.
