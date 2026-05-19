@@ -63,7 +63,7 @@ terraform {
   backend "s3" {
     bucket         = "smart-facility-terraform-state"
     key            = "global/smart-facility/terraform.tfstate"
-    region         = "eu-north-1"
+    region         = "us-east-1"
     dynamodb_table = "terraform-locks"
     encrypt        = true
   }
