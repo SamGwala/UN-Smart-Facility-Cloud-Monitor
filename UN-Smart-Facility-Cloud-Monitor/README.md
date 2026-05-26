@@ -2,12 +2,12 @@
 ## UN Smart Facility Cloud Monitor
 
 ## Introduction
- **The system is down** four words that cost South African citizens thousands of hours in queues. This project proves those words are an engineering problem  not an inevitability. In South Africa, the NaTIS vehicle licensing and booking platform crashes regularly under load. Citizens arrive at licensing departments to find queues of hundreds, staff who cannot process anything, and no estimated recovery time. The failure is not a mystery it is a predictable consequence of unmonitored infrastructure with no automated recovery path.
+ **The system is down** four words that cost South African citizens thousands of hours in queues. This project proves those words are an engineering problem  not an inevitability. In South Africa, the NaTIS vehicle licensing and booking platform crashes regularly under load. Citizens arrive at licensing departments to find queues of hundreds, staff who cannot process anything and no estimated recovery time. The failure is not a mystery it is a predictable consequence of unmonitored infrastructure with no automated recovery path.
 
-This project is a direct response to that pattern. It provisions a cloud-based monitoring and self-healing system on AWS that detects infrastructure stress before it becomes a crash, notifies the responsible engineer immediately, and autonomously reboots the affected server  all within 60 seconds of threshold breach.This project demonstrates how resilient cloud monitoring and automation could prevent such failures. It aligns with the UNDP’s Smart Facilities initiative and supports the Sustainable Development Goals (SDGs).
+This project is a direct response to that pattern. It provisions a cloud-based monitoring and self-healing system on AWS that detects infrastructure stress before it becomes a crash, notifies the responsible engineer immediately and autonomously reboots the affected server  all within 60 seconds of threshold breach.This project demonstrates how resilient cloud monitoring and automation could prevent such failures. It aligns with the UNDP’s Smart Facilities initiative and supports the Sustainable Development Goals (SDGs).
 
 ## Project Overview
-This project provisions cloud infrastructure with Terraform, monitors it with CloudWatch, automates alerts via SNS and native AWS actions, and documents recovery workflows. It evolves step by step from a simple EC2 instance into a production-ready setup with centralized state management.
+This project provisions cloud infrastructure with Terraform, monitors it with CloudWatch, automates alerts via SNS and native AWS actions and documents recovery workflows. It evolves step by step from a simple EC2 instance into a production ready setup with centralized state management.
 
 ## Repository Structure
 • terraform/ → Infrastructure as Code (EC2, CloudWatch, SNS, backend config)
@@ -18,14 +18,14 @@ This project provisions cloud infrastructure with Terraform, monitors it with Cl
 Terraform → EC2 Instance → CloudWatch Metrics → CloudWatch Dashboard → CloudWatch Alarm → SNS Email → EC2 Auto-Reboot Action
 
 ## Technical Justification: Why Reboot? 
-While other options exist horizontal scaling (Auto Scaling) being a common solution, I chose Automated Rebooting as the primary self-healing mechanism for this UNDP project. This solution was chosen as the most "Sustainable" choice for a UNDP projec because of the following reasons: 
-Cost Sustainability:  Unlike Auto Scaling (which doubles costs by launching new servers), rebooting fixes the existing server for free, staying under our $5 budget. A reboot addresses software-level crashes—the primary cause of NaTIS-style failures.
+While other options exist horizontal scaling (Auto Scaling) being a common solution, I chose Automated Rebooting as the primary self-healing mechanism for this UNDP project. This solution was chosen as the most "Sustainable" choice for a UNDP project because of the following reasons: 
+Cost Sustainability:  Unlike Auto Scaling (which doubles costs by launching new servers), rebooting fixes the existing server for free, staying under our $5 budget. A reboot addresses software level crashes the primary cause of NaTIS-style failures.
 
 ## What happens if rebooting doesn't fix it? 
-The reboot is the first line of defense to clear stuck processes. If it fails again, the alarm will stay 'In Alarm' state, and the developer will see the email to perform a deeper investigation. However it is important to bare in mind that if the high CPU usage is caused by a permanent bug (like a corrupted database) the server will reboot, start at that bad script again and hit 70% CPU immediately. This is called a crash loop. 
+The reboot is the first line of defense to clear stuck processes. If it fails again, the alarm will stay 'In Alarm' state and the developer will see the email to perform a deeper investigation. However it is important to bare in mind that if the high CPU usage is caused by a permanent bug (like a corrupted database) the server will reboot, start at that bad script again and hit 70% CPU immediately. This is called a crash loop. 
 
 ## Self-Healing Logic
-A reboot clears stale process it flushes the network stack (TCP connections), and releases file locks that cause system deadlocks.
+A reboot clears stale process it flushes the network stack (TCP connections) and releases file locks that cause system deadlocks.
 
 ## Project Timeline
 
@@ -44,7 +44,7 @@ Day 3 – Monitoring
 Day 4 – Alerts (Passive Monitoring)
 • Added a CloudWatch alarm (CPU > 70%).
 • Configured it to send an email via SNS topic.
-• The Limitation ??  At this stage, the system can detect a crash, but a developer would still have to wake up at 1 AM to fix it manually.
+• The Limitation ??  At this stagethe system can detect a crash but a developer would still have to wake up at 1 AM to fix it manually.
 
 Day 5 – Automation (Active Self-Healing)
 In Day 5, we move from just "talking" to SNS to "talking" to the AWS EC2 Reboot API.
@@ -112,7 +112,7 @@ This project is more than a technical exercise it is a blueprint for Operational
 Through this 7-day evolution, I have implemented a system that:
 A system that SELF HEALS using native AWS actions to clear defunct or stale processes and restore service in minutes, not hours. At a cost effective mannerby utilizing AWS Budgets to ensure that high tech resilience does not come at an unsustainable cost to donor-funded projects.It also implements a secure S3/DynamoDB backend that allows international teams to collaborate without the risk of infrastructure conflict.
 
-By moving from "solo tinkering" to a Production-Ready environment, this project proves that even with a limited budget, we can build cloud infrastructure that is robust enough to safeguard community access to essential services. In the modern era, a resilient cloud is not a luxury it is a pillar of stable governance.
+By moving from "solo tinkering" to a Production-Ready environment, this project proves that even with a limited budgetbudget of we can build cloud infrastructure that is robust enough to safeguard community access to essential services. In the modern era, a resilient cloud is not a luxury it is a pillar of stable governance.
 
 ## What This Project Does Not Solve (Yet)
 
