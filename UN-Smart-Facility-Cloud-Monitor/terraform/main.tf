@@ -74,7 +74,8 @@ resource "aws_cloudwatch_metric_alarm" "cpu" {
   }
 
   alarm_actions = [
-    aws_sns_topic.alerts.arn
+    aws_sns_topic.alerts.arn,
+    "arn:aws:automate:us-east-1:ec2:reboot"
   ]
 }
 
